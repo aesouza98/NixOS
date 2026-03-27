@@ -1,0 +1,21 @@
+{
+  "name": "NixOS Config Environment",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/nix:1": {
+      "multiUser": true
+    }
+  },
+  "postCreateCommand": "mkdir -p ~/.config/nix && echo 'experimental-features = nix-command flakes' >> ~/.config/nix/nix.conf",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "nix.enableLanguageServer": true,
+        "nix.serverPath": "nixd"
+      },
+      "extensions": [
+        "jnoortheen.nix-ide"
+      ]
+    }
+  }
+}
