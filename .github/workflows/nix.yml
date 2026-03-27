@@ -1,0 +1,21 @@
+name: nix-flake
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: cachix/install-nix-action@v25
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - run: nix flake show
+      - run: nix flake check
+      - run: nix build .#nixosConfigurations.Nyx.config.system.build.toplevel
