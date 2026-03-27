@@ -1,11 +1,21 @@
 name: Build NixOS Config
-on: [push, pull_request]
+
+on: 
+  push:
+    paths-ignore:
+      - '.github/**'
+      - '.devcontainer/**'
+
+  workflow_dispatch:
+
 jobs:
-  build:
+  build_and_check:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
-      - name: Free Disk Space (Ubuntu)
+
+      - name: Free Disk Space
         uses: jlumbroso/free-disk-space@main
         with:
           tool-cache: true
@@ -15,8 +25,15 @@ jobs:
           large-packages: true
           docker-images: true
           swap-storage: true
+
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
-      - run: nix flake check
-      - run: nix build --dry-run .#nixosConfigurations.Nyx.config.system.build.toplevel
-      - run: nix build .#nixosConfigurations.Nyx.config.system.build.toplevel
+
+      - name: Flake Check
+        run: nix flake check
+
+      - name: Nix Build (Dry Run)
+        run: nix build --dry-run .#nixosConfigurations.Nyx.config.system.build.toplevel
+
+      - name: Nix Build
+        run: nix build .#nixosConfigurations.Nyx.config.system.build.toplevel
