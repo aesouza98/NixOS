@@ -2,8 +2,10 @@
   flake.homeModules.git = { ... }: {
     programs.git = {
       enable = true;
-      userName = "Adriano Elias";
-      userEmail = "github@nano.slmail.me";
+      user = {
+        name = "Adriano Elias";
+        email = "github@nano.slmail.me";
+      };
       settings = {
       	alias = {
       	  st = "status";
