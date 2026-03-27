@@ -13,7 +13,7 @@
         gaming.enable = lib.mkEnableOption "Gaming packages";
         system.enable = lib.mkEnableOption "System packages";
         cli.enable = lib.mkEnableOption "CLI utilities";
-        neovim.enable = lib.mkEnableOption "Neovim and dependencies";
+        neovim.enable = lib.mkEnableOption "Neovim dependencies";
         desktop.enable = lib.mkEnableOption "General desktop apps";
       };
 
@@ -71,7 +71,7 @@
         
         (lib.mkIf cfg.neovim.enable {
           environment.systemPackages = with pkgs; [
-            neovim bash-language-server pyright lua-language-server
+            bash-language-server pyright lua-language-server
             yaml-language-server vscode-json-languageserver nil
             dockerfile-language-server sqls marksman stylua shfmt
             prettier sqlfluff nixfmt biome python313Packages.flake8
