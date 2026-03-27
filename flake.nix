@@ -15,8 +15,5 @@
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake 
 	{inherit inputs;}
-    {
-      flake.homeModules = { };
-      imports = [ (inputs.import-tree ./modules) ];
-    };
+	(inputs.import-tree ./modules);
 }

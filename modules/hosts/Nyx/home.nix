@@ -13,8 +13,8 @@
     # Configure user
     home-manager.users.nano = {
       imports = [
-      	self.nixosModules.gnome-settings
-      	self.nixosModules.git
+      	self.homeModules.git
+      	self.homeModules.gnome-settings
       ];
 
       home.username = "nano";

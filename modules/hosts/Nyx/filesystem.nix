@@ -1,14 +1,9 @@
 { self, inputs, ... }: {
 
 flake.nixosModules.NyxDisks = { config,pkgs, ... }:
-
-let
-  userHome = config.users.users.nano.home;
-in
-
 {
   boot.supportedFilesystems = [ "ntfs" ];
-  fileSystems."${userHome}/hdd" = {
+  fileSystems."/home/nano/hdd" = {
     device = "/dev/disk/by-uuid/347CF2B57CF270CA";
     fsType = "ntfs-3g";
     options = [

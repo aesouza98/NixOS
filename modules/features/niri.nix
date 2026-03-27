@@ -32,7 +32,9 @@
 
 				binds = {
 					"Mod+Space".spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call launcher toggle";
+					"Mod+Escape".spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call sessionMenu toggle";
 					"Mod+Return".spawn-sh = lib.getExe pkgs.ghostty;
+					"Mod+E".spawn-sh = lib.getExe pkgs.nautilus;
 					"Mod+W".close-window = null;
 				};
 			};

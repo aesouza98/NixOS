@@ -8,7 +8,9 @@
 	self.nixosModules.NyxPkgs
 	self.nixosModules.niri
 	self.nixosModules.NyxHome
-	#self.nixosModules.NyxDisks
+	self.nixosModules.NyxDisks
+	self.nixosModules.syncthing
+	self.nixosModules.ssh
     ];
 
 nix.settings.experimental-features = [ "nix-command" "flakes" ];

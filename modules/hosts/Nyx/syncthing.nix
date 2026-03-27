@@ -1,0 +1,26 @@
+{ self, inputs, ... }: {
+
+	flake.nixosModules.syncthing = { config, pkgs, ... }: {
+	# Syncthing
+  services.syncthing = {
+    enable = true;
+    user = "nano";
+    group = "users";
+    configDir = "/home/nano/.local/state/syncthing/";
+    overrideDevices = true;
+    overrideFolders = true;
+    settings = {
+      devices = {
+        "iPhone" = { id = "B24AQ5V-QRYEQQW-MENRLKS-TPPB5DY-RKGEE6E-POVC4Z5-P7XZOJZ-45LTAQA"; };
+        "Macbook" = { id = ""; }; 
+      };
+      folders = {
+        "4kmqu-rcy4z" = {
+          path = "~/Documents/Vaults/NanoVault";
+          devices = [ "iPhone" ];
+        };
+      };
+    };
+    };
+	};
+}
