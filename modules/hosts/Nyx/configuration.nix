@@ -17,6 +17,7 @@
     self.nixosModules.zsh
 
     # Modules
+    self.nixosModules.gc
     self.nixosModules.nvidia
 	  self.nixosModules.niri
   ];
