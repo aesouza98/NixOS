@@ -15,12 +15,8 @@
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake 
 	{inherit inputs;}
-	{
-      # This tells flake-parts to collect all 'homeModules' from 
-      # your sub-modules and merge them into the final flake output.
+    {
       flake.homeModules = { };
-
-      # This imports your existing module tree
       imports = [ (inputs.import-tree ./modules) ];
     };
 }
