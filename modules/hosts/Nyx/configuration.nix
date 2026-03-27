@@ -3,14 +3,22 @@
 
 {
   imports = [
+    # Host Specifics
 	  self.nixosModules.NyxHardware
 	  self.nixosModules.NyxPkgs
-	  self.nixosModules.niri
-	  self.nixosModules.NyxHome
+    self.nixosModules.NyxHome
 	  self.nixosModules.NyxDisks
-	  self.nixosModules.syncthing
-	  self.nixosModules.ssh
+    self.nixosModules.syncthing
+
+    # Programs
+    self.nixosModules.localsend
+    self.nixosModules.neovim
+    self.nixosModules.ssh
     self.nixosModules.zsh
+
+    # Modules
+    self.nixosModules.nvidia
+	  self.nixosModules.niri
   ];
 
 nix.settings.experimental-features = [ "nix-command" "flakes" ];

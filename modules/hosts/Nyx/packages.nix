@@ -2,7 +2,6 @@
   flake.nixosModules.NyxPkgs = { ... }: {
     imports = [
     	self.nixosModules.packages
-	self.nixosModules.localsend
     ];
 
     hostPackages = {
