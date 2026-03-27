@@ -20,6 +20,7 @@
     self.nixosModules.gc
     self.nixosModules.nvidia
 	  self.nixosModules.niri
+    self.nixosModules.sudo
   ];
 
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
