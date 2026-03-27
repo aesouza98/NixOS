@@ -18,4 +18,5 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
       - run: nix flake check
+      - run: nix build --dry-run .#nixosConfigurations.Nyx.config.system.build.toplevel
       - run: nix build .#nixosConfigurations.Nyx.config.system.build.toplevel
