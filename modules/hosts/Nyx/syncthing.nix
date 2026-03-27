@@ -17,7 +17,7 @@
       folders = {
         "4kmqu-rcy4z" = {
           path = "~/Documents/Vaults/NanoVault";
-          devices = [ "iPhone", "Macbook" ];
+          devices = [ "iPhone" "Macbook" ];
         };
       };
     };
