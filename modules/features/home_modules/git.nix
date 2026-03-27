@@ -2,9 +2,11 @@
   flake.homeModules.git = { ... }: {
     programs.git = {
       enable = true;
-      userName = "Adriano Elias";
-      userEmail = "github@nano.slmail.me";
       settings = {
+        user = {
+          name = "Adriano Elias";
+          email = "github@nano.slmail.me";
+        };
       	alias = {
       	  st = "status";
       	  # lg = "log --oneline --graph --decorate";
@@ -15,7 +17,7 @@
       	};
         core.editor = "nvim";
         pull.rebase = true;
-	push.autoSetupRemote = true;
+	      push.autoSetupRemote = true;
       };
     };
   };
