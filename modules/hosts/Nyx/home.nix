@@ -14,7 +14,7 @@
     home-manager.users.nano = {
       imports = [
       	self.homeModules.gnome-settings
-      #	self.homeModules.git
+      	self.homeModules.git
       ];
 
       home.username = "nano";
