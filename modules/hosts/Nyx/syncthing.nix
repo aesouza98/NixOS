@@ -15,7 +15,8 @@
         "Macbook" = { id = "YZZQHV5-XF7T2DO-SLJ4TBD-6OH6VB3-AV5474O-U777BYZ-L3MWTMK-CHFLLQK"; }; 
       };
       folders = {
-        "4kmqu-rcy4z" = {
+        "NanoVault" = {
+          id = "4kmqu-rcy4z";
           path = "~/Documents/Vaults/NanoVault";
           devices = [ "iPhone" "Macbook" ];
         };
