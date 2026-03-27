@@ -2,16 +2,16 @@
 	flake.nixosModules.NyxConfig = { config, pkgs, ... }:
 
 {
-  imports =
-    [
-	self.nixosModules.NyxHardware
-	self.nixosModules.NyxPkgs
-	self.nixosModules.niri
-	self.nixosModules.NyxHome
-	self.nixosModules.NyxDisks
-	self.nixosModules.syncthing
-	self.nixosModules.ssh
-    ];
+  imports = [
+	  self.nixosModules.NyxHardware
+	  self.nixosModules.NyxPkgs
+	  self.nixosModules.niri
+	  self.nixosModules.NyxHome
+	  self.nixosModules.NyxDisks
+	  self.nixosModules.syncthing
+	  self.nixosModules.ssh
+    self.nixosModules.zsh
+  ];
 
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
