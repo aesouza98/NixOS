@@ -1,6 +1,11 @@
-name: Build NixOS Config
+name: (Dry-Run) Build NixOS Config
 
 on: 
+  push:
+    paths-ignore:
+      - '.github/**'
+      - '.devcontainer/**'
+
   workflow_dispatch:
 
 jobs:
@@ -35,6 +40,3 @@ jobs:
 
       - name: Nix Build (Dry Run)
         run: nix build --dry-run .#nixosConfigurations.Nyx.config.system.build.toplevel
-
-      - name: Nix Build
-        run: nix build .#nixosConfigurations.Nyx.config.system.build.toplevel
