@@ -22,7 +22,7 @@
         (lib.mkIf cfg.hypr.enable {
           environment.systemPackages = with pkgs; [
             alacritty cliphist grim fuzzel hyprlock hyprshot
-            libnotify mako pamixer playerctl swaybg swayosd waybar
+            libnotify pamixer playerctl swaybg swayosd waybar
             wiremix wl-clip-persist wl-clipboard xwayland-satellite
           ];
         })
