@@ -8,7 +8,6 @@
         enable = true;
         package = self.packages.${pkgs.stdenv.hostPlatform.system}.niri;
       };
-      nixpkgs.config.allowUnfree = true;
     };
 
   perSystem =
@@ -19,7 +18,6 @@
       ...
     }:
     {
-      nixpkgs.config.allowUnfree = true;
       packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
         inherit pkgs;
         settings = {
