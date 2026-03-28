@@ -9,7 +9,7 @@
       appearance.enable = true;
       gaming.enable = true;
       gnome.enable = true;
-      neovim.enable = true;
+      dev_dependencies.enable = true;
       hypr.enable = true;
       cli.enable = true;
       dev.enable = true;

@@ -9,11 +9,11 @@
         hypr.enable = lib.mkEnableOption "Hyprland related packages";
         appearance.enable = lib.mkEnableOption "Appearance packages";
         gnome.enable = lib.mkEnableOption "GNOME packages";
-        dev.enable = lib.mkEnableOption "Development packages";
+        dev_dependencies.enable = lib.mkEnableOption "General Dependencies";
         gaming.enable = lib.mkEnableOption "Gaming packages";
         system.enable = lib.mkEnableOption "System packages";
         cli.enable = lib.mkEnableOption "CLI utilities";
-        neovim.enable = lib.mkEnableOption "Neovim dependencies";
+        dev.enable = lib.mkEnableOption "IDEs, LSPs, Linters and Formatters";
         desktop.enable = lib.mkEnableOption "General desktop apps";
       };
 
@@ -40,14 +40,14 @@
           ];
         })
         
-        (lib.mkIf cfg.dev.enable {
+        (lib.mkIf cfg.dev_dependencies.enable {
           environment.systemPackages = with pkgs; [
             cargo docker docker-compose docker-buildx gcc gnumake
             go git lazydocker libgcc luarocks nodejs_22 python313
             ruby rustc yarn
           ];
         })
-        
+
         (lib.mkIf cfg.gaming.enable {
           environment.systemPackages = with pkgs; [
             bottles discord hydralauncher protonup-ng wine wine64 winetricks
@@ -69,14 +69,14 @@
           ];
         })
         
-        (lib.mkIf cfg.neovim.enable {
+        (lib.mkIf cfg.dev.enable {
           environment.systemPackages = with pkgs; [
             bash-language-server pyright lua-language-server
             yaml-language-server vscode-json-languageserver nil
             dockerfile-language-server sqls marksman stylua shfmt
             prettier sqlfluff nixfmt biome python313Packages.flake8
             shellcheck ruff yamllint tflint ansible-lint hadolint
-            markdownlint-cli
+            markdownlint-cli zed-editor
           ];
         })
         

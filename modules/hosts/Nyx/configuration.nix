@@ -8,13 +8,8 @@
 	  self.nixosModules.NyxPkgs
     self.nixosModules.NyxHome
 	  self.nixosModules.NyxDisks
+    self.nixosModules.NyxPrograms
     self.nixosModules.syncthing
-
-    # Programs
-    self.nixosModules.localsend
-    self.nixosModules.neovim
-    self.nixosModules.ssh
-    self.nixosModules.zsh
 
     # Modules
     self.nixosModules.gc
