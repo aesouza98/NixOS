@@ -12,12 +12,19 @@
 
   perSystem =
     {
+      system,
       pkgs,
       lib,
       self',
       ...
     }:
+
     {
+      # Override the default pkgs instance to allow unfree packages
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
       packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
         inherit pkgs;
         settings = {
