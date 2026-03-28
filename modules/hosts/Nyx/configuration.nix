@@ -14,10 +14,11 @@
         self.nixosModules.syncthing
 
         # Modules
-        self.nixosModules.gc
-        self.nixosModules.nvidia
-        self.nixosModules.niri
-        self.nixosModules.sudo
+        self.nixosModules.gaming  # Enable Gaming
+        self.nixosModules.gc      # Enable Garbage Collection
+        self.nixosModules.nvidia  # Install and configure Nvidia Drivers
+        self.nixosModules.niri    # Install and configure the Niri Window Manager (With Noctalia shell)
+        self.nixosModules.sudo    # Configure Sudo
       ];
 
       nix.settings.experimental-features = [
@@ -94,10 +95,6 @@
           init.defaultBranch = "master";
         };
       };
-      programs.zsh.enable = true;
-
-      # Install firefox.
-      programs.firefox.enable = true;
 
       system.stateVersion = "25.11";
 

@@ -17,7 +17,6 @@
         appearance.enable = lib.mkEnableOption "Appearance packages";
         gnome.enable = lib.mkEnableOption "GNOME packages";
         dev_dependencies.enable = lib.mkEnableOption "General Dependencies";
-        gaming.enable = lib.mkEnableOption "Gaming packages";
         system.enable = lib.mkEnableOption "System packages";
         cli.enable = lib.mkEnableOption "CLI utilities";
         dev.enable = lib.mkEnableOption "IDEs, LSPs, Linters and Formatters";
@@ -85,18 +84,6 @@
             ruby
             rustc
             yarn
-          ];
-        })
-
-        (lib.mkIf cfg.gaming.enable {
-          environment.systemPackages = with pkgs; [
-            bottles
-            discord
-            hydralauncher
-            protonup-ng
-            wine
-            wine64
-            winetricks
           ];
         })
 

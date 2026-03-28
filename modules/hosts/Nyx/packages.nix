@@ -10,7 +10,6 @@
       hostPackages = {
         desktop.enable = true;
         appearance.enable = true;
-        gaming.enable = true;
         gnome.enable = true;
         dev_dependencies.enable = true;
         hypr.enable = true;

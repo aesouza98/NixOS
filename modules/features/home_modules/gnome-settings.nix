@@ -11,6 +11,8 @@
       };
       home.sessionVariables = {
         GTK_DEFAULT_COLOR_SCHEME = "prefer-dark";
+        XCURSOR_THEME = "Yaru";
+        XCURSOR_SIZE = "24";
       };
     };
 }
