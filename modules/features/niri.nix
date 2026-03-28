@@ -28,6 +28,13 @@
       packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
         inherit pkgs;
         env.NIRI_CONFIG = lib.mkForce null;
+        prefixVar.PATH = [
+          ":"
+          (lib.makeBinPath [
+            self'.packages.noctalia
+            pkgs.nautilus
+          ])
+        ];
         # settings = {
         #   spawn-at-startup = [
         #     (lib.getExe self'.packages.noctalia)
