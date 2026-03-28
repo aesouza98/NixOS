@@ -5,7 +5,7 @@
             enable = true;
             extentions = with pkgs.vscode-extensions; [
                 bbenoist.nix
-            ]
+            ];
         };
     };
 }
