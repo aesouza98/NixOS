@@ -32,7 +32,13 @@
           [
             "PATH"
             ":"
-            "${lib.makeLibraryPath (with pkgs; [ 'noctalia' ])}"
+            "${lib.makeLibraryPath (
+              with pkgs;
+              [
+                noctalia
+                nautilus
+              ]
+            )}"
           ]
         ];
 
