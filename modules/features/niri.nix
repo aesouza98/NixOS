@@ -27,9 +27,7 @@
       };
       packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
         inherit pkgs;
-        "config.kdl" = {
-          path = "~/.config/niri/config.kdl";
-        };
+        env.NIRI_CONFIG = lib.mkForce null;
         # settings = {
         #   spawn-at-startup = [
         #     (lib.getExe self'.packages.noctalia)
