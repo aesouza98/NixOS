@@ -29,11 +29,14 @@
         inherit pkgs;
         env.NIRI_CONFIG = lib.mkForce null;
         prefixVar.PATH = [
-          ":"
-          (lib.makeBinPath [
-            self'.packages.noctalia
-            pkgs.nautilus
-          ])
+          [
+            "PATH"
+            ":"
+            (lib.makeBinPath [
+              self'.packages.noctalia
+              pkgs.nautilus
+            ])
+          ]
         ];
         # settings = {
         #   spawn-at-startup = [
