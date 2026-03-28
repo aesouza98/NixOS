@@ -16,17 +16,6 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v4
 
-      - name: Free Disk Space
-        uses: jlumbroso/free-disk-space@main
-        with:
-          tool-cache: true
-          android: true
-          dotnet: true
-          haskell: true
-          large-packages: true
-          docker-images: true
-          swap-storage: true
-
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
 
