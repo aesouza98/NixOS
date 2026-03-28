@@ -32,12 +32,10 @@
           [
             "PATH"
             ":"
-            (lib.makeBinPath [
-              self'.packages.noctalia
-              pkgs.nautilus
-            ])
+            "${lib.makeLibraryPath (with pkgs; [ noctalia ])}"
           ]
         ];
+
         # settings = {
         #   spawn-at-startup = [
         #     (lib.getExe self'.packages.noctalia)
