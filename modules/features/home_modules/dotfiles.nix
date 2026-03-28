@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.homeModules.dotfiles =
-    { ... }:
+    { config, ... }:
       let
         dotfiles = "${config.home.homeDirectory}/.dotfiles";
         create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
