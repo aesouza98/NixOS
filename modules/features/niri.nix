@@ -32,12 +32,7 @@
           [
             "PATH"
             ":"
-            "${lib.getExe self'.packages.noctalia}"
-          ]
-          [
-            "PATH"
-            ":"
-            "${lib.getExe pkgs.nautilus}"
+            "${lib.getExe self'.packages.noctalia}:${lib.getExe pkgs.nautilus}"
           ]
         ];
 
