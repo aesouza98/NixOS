@@ -16,6 +16,7 @@
       # Configure user
       home-manager.users.nano = {
         imports = [
+          self.homeModules.dotfiles
           self.homeModules.git
           self.homeModules.gnome-settings
         ];
