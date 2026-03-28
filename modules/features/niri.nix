@@ -28,7 +28,7 @@
       packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
         inherit pkgs;
         env.NIRI_CONFIG = lib.mkForce null;
-        prefixVar.PATH = [
+        prefixVar = [
           [
             "PATH"
             ":"
