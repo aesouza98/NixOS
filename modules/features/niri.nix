@@ -46,6 +46,8 @@
             "Mod+Return".spawn-sh = lib.getExe pkgs.ghostty;
             "Mod+E".spawn-sh = "${lib.getExe pkgs.nautilus} --new-window";
             "Mod+W".close-window = null;
+            "Mod+O".spawn-sh = "${lib.getExe pkgs.obsidian}";
+            "Mod+B".spawn-sh = "${lib.getExe pkgs.brave}";
           };
         };
       };
