@@ -1,9 +1,12 @@
-{ self, inputs, ... }: {
+{ self, inputs, ... }:
+{
 
-	flake.nixosModules.zsh = { ... }: {
-        programs.zsh = {
-            enable = true;
-            ohMyZsh.enable = true;
-        };
+  flake.nixosModules.zsh =
+    { ... }:
+    {
+      programs.zsh = {
+        enable = true;
+        ohMyZsh.enable = true;
+      };
     };
 }
