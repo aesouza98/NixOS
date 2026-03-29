@@ -95,11 +95,14 @@
             {
               matches = [ { title = "Picture.{0,1}in.{0,1}[Pp]icture"; } ];
               open-floating = true;
-              default-floating-position = {
-                x = 16;
-                y = 16;
-              };
-              relative-to = "bottom-right";
+              default-floating-position = [
+                {
+                  x = 16;
+                  y = 16;
+                  relative-to = "bottom-right";
+                }
+              ];
+
               open-focused = false;
             }
             {
@@ -230,8 +233,8 @@
             "Mod+Ctrl+l".action.move-column-right = null;
             "Mod+Ctrl+k".action.move-window-up = null;
             "Mod+Ctrl+j".action.move-window-down = null;
-            "Mod+Ctrl+Home".action-move-column-to-first = null;
-            "Mod+Ctrl+End".action-move-column-to-last = null;
+            "Mod+Ctrl+Home".action.move-column-to-first = null;
+            "Mod+Ctrl+End".action.move-column-to-last = null;
 
             # --- Focus Monitor --- #
             "Mod+Shift+Left".action.focus-monitor-left = null;
@@ -302,8 +305,8 @@
 
             "Mod+Shift+WheelScrollUp".action.focus-column-left = null;
             "Mod+Shift+WheelScrollRight".action.focus-column-right = null;
-            "Mod+Chift+Ctrl+WheelScrollDown".action.move-column-right = null;
-            "Mod+Chift+Ctrl+WheelScrollUp".action.move-column-left = null;
+            "Mod+Shift+Ctrl+WheelScrollDown".action.move-column-right = null;
+            "Mod+Shift+Ctrl+WheelScrollUp".action.move-column-left = null;
 
             # --- Layouts --- #
             "Mod+Q".action.toggle-column-tabbed-display = null;
