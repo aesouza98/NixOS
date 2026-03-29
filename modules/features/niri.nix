@@ -95,12 +95,9 @@
             {
               matches = [ { title = "Picture.{0,1}in.{0,1}[Pp]icture"; } ];
               open-floating = true;
-              default-floating-position = {
-                x = 16;
-                y = 16;
-                relative-to = "bottom-right";
-              };
-
+              default-floating-position.x = 16;
+              default-floating-position.y = 16;
+              default-floating-position.relative-to = "bottom-right";
               open-focused = false;
             }
             {
