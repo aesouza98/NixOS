@@ -27,12 +27,7 @@
         settings = {
           prefer-no-csd = true;
           hotkey-overlay.skip-at-startup = true;
-          screenshot-path = "~/Imagens/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
-
-          environment = {
-            QT_QPA_PLATFORMTHEME = "hyprqt6engine";
-          };
-
+          screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
           input = {
             keyboard = {
               xkb = {
@@ -94,13 +89,7 @@
             #(/usr/lib/pam_kwallet_init)
             (lib.getExe self'.packages.noctalia)
             {
-              command = [
-                "wl-clip-persist"
-                "--clipboard"
-                "regular"
-                "--all-mime-type-regex"
-                "^(?!x-kde-passwordManagerHint).+"
-              ];
+              command = "wl-clip-persist --clipboard regular --all-mime-type-regex ^(?!x-kde-passwordManagerHint).+";
             }
           ];
 
