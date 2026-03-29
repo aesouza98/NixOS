@@ -88,9 +88,7 @@
             #(lib.getExe pkgs.swayosd)
             #(/usr/lib/pam_kwallet_init)
             (lib.getExe self'.packages.noctalia)
-            {
-              command = "wl-clip-persist --clipboard regular --all-mime-type-regex ^(?!x-kde-passwordManagerHint).+";
-            }
+            "wl-clip-persist --clipboard regular --all-mime-type-regex ^(?!x-kde-passwordManagerHint).+"
           ];
 
           window-rules = [
