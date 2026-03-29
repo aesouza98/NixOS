@@ -1,3 +1,26 @@
+{ self, inputs, ... }:
+{
+  flake.nixosModules.niri =
+    { pkgs, lib, ... }:
+    {
+      programs.niri = {
+        enable = true;
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.niri;
+      };
+    };
+  perSystem =
+    {
+      system,
+      pkgs,
+      lib,
+      self',
+      ...
+    }:
+    {
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
 packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
   inherit pkgs;
 
@@ -123,57 +146,57 @@ packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
       "Mod+M".action.spawn = [ (lib.getExe pkgs.spotify) ];
 
       # --- Noctalia Keybinds ---
-      "Mod+Space".action.spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
-      "Mod+Shift+A".action.spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call controlCenter toggle";
-      "Mod+Shift+Comma".action.spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call settings toggle";
+      "Mod+Space".action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call launcher toggle";
+      "Mod+Shift+A".action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call controlCenter toggle";
+      "Mod+Shift+Comma".action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call settings toggle";
       "Mod+Escape" = {
         hotkey-overlay-title = "Power Menu";
-        action.spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call sessionMenu toggle";
+        action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call sessionMenu toggle";
       };
 
       # --- Media Keys --- #
       "XF86AudioRaiseVolume" = {
         allow-when-locked = true;
-        action.spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call volume increase";
+        action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call volume increase";
       };
       "XF86AudioLowerVolume" = {
         allow-when-locked = true;
-        action.spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call volume decrease";
+        action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call volume decrease";
       };
 
       "XF86AudioMute" = {
         allow-when-locked = true;
-        action.spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call volume muteOutput";
+        action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call volume muteOutput";
       };
 
       "XF86MonBrightnessUp" = {
         allow-when-locked = true;
-        action.spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call brightness increase";
+        action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call brightness increase";
       };
 
       "XF86MonBrightnessDown" = {
         allow-when-locked = true;
-        action.spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call brightness decrease";
+        action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call brightness decrease";
       };
 
       "XF86AudioNext" = {
         allow-when-locked = true;
-        action.spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call media next";
+        action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call media next";
       };
 
       "XF86AudioPause" = {
         allow-when-locked = true;
-        action.spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call media playPause";
+        action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call media playPause";
       };
 
       "XF86AudioPlay" = {
         allow-when-locked = true;
-        action.spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call media playPause";
+        action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call media playPause";
       };
 
       "XF86AudioPrev" = {
         allow-when-locked = true;
-        action.spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call media previous";
+        action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call media previous";
       };
 
       # --- Window Management ---
@@ -310,4 +333,6 @@ packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
       "Mod+Shift+P".action.power-off-monitors = null;
     };
   };
+};
+    };
 };
