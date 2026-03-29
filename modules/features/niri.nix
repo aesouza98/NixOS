@@ -32,7 +32,10 @@
           [
             "PATH"
             ":"
-            "${lib.getExe self'.packages.noctalia}:${lib.getExe pkgs.nautilus}"
+            (lib.makeBinPath [
+              self'.packages.noctalia
+              pkgs.nautilus
+            ])
           ]
         ];
 
