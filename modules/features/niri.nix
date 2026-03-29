@@ -32,7 +32,7 @@
           [
             "PATH"
             ":"
-            "${lib.makeBinPath.self'.packages.noctalia}: ${lib.makeBinPath pkgs.nautilus}"
+            "${lib.makeBinPath.self'.packages.noctalia}:${lib.makeBinPath pkgs.nautilus}"
           ]
         ];
 
