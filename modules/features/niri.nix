@@ -95,11 +95,9 @@
             {
               matches = [ { title = "Picture.{0,1}in.{0,1}[Pp]icture"; } ];
               open-floating = true;
-              default-floating-position = {
-                x = 16;
-                y = 16;
-                relative-to = "bottom-right";
-              };
+              default-floating-position.x = 16;
+              default-floating-position.y = 16;
+              relative-to = "bottom-right";
               open-focused = false;
             }
             {
@@ -144,7 +142,7 @@
               action.spawn = [ (lib.getExe pkgs.brave) ];
             };
 
-            # Fixed Nautilus / Dolphin execution
+            # --- Applications --- #
             "Mod+E".action.spawn = [ (lib.getExe pkgs.nautilus) ];
             "Mod+O".action.spawn = [ (lib.getExe pkgs.obsidian) ];
             "Mod+M".action.spawn = [ (lib.getExe pkgs.spotify) ];
