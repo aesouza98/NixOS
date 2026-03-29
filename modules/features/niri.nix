@@ -115,7 +115,7 @@
               open-floating = true;
             }
             {
-              matches = [ { app-id = "^org\\.gnome\\.NautilusPreviewer$"; } ];
+              matches = [ { app-id = "^org\.gnome\.NautilusPreviewer$"; } ];
               open-floating = true;
             }
           ];
