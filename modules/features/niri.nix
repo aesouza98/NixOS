@@ -32,7 +32,7 @@
           [
             "PATH"
             ":"
-            "${lib.makeBinPath self'.packages.noctalia}"
+            (lib.makeBinPath [ self'.packages.noctalia ])
           ]
         ];
 
