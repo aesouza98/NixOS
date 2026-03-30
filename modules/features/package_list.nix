@@ -158,6 +158,7 @@
             markdownlint-cli
             zed-editor
             nixd
+            helix
           ];
         })
 
