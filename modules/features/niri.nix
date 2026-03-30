@@ -91,21 +91,16 @@
             "wl-clip-persist --clipboard regular --all-mime-type-regex ^(?!x-kde-passwordManagerHint).+"
           ];
 
-          window-rules = [
-            {
-              matches = [ { title = "Picture.{0,1}in.{0,1}[Pp]icture"; } ];
-              open-floating = true;
-              open-focused = false;
-              # Use the 'raw' attribute if your module supports it,
-              # or simply write the properties as a single unquoted-looking block
-              default-floating-position = {
-                _args = [
-                  (builtins.unsafeDiscardStringContext "x=16")
-                  (builtins.unsafeDiscardStringContext "y=16")
-                  (builtins.unsafeDiscardStringContext "relative-to=\"bottom-right\"")
-                ];
-              };
+          extraConfig = ''
+            window-rule {
+              match title="Picture.{0,1}in.{0,1}[Pp]icture"
+              open-floating true
+              default-floating-position x=16 y=16 relative-to="bottom-right"
+              open-focused false
             }
+          '';
+
+          window-rules = [
             {
               geometry-corner-radius = 20;
               clip-to-geometry = true;
@@ -132,215 +127,194 @@
           ];
 
           binds = {
+            __raw = ''
+              // Most actions that you can bind here can also be invoked programmatically with
+               // `niri msg action do-something`.
 
-            "Mod+Shift+Slash".action.show-hotkey-overlay = { };
+               Mod+Shift+Slash { show-hotkey-overlay; }
 
-            "Mod+Return" = {
-              hotkey-overlay-title = "Terminal";
-              action.spawn = [ (lib.getExe pkgs.ghostty) ];
-            };
-            "Mod+D" = {
-              hotkey-overlay-title = "Application Launcher";
-              action.spawn = [ (lib.getExe pkgs.fuzzel) ];
-            };
-            "Mod+B" = {
-              hotkey-overlay-title = "Open Browser";
-              action.spawn = [ (lib.getExe pkgs.brave) ];
-            };
+               // Launchers
+               Mod+RETURN hotkey-overlay-title="Terminal" { spawn "ghostty"; }
+               Mod+D hotkey-overlay-title="Application Launcher" { spawn "fuzzel"; }
+               Mod+S hotkey-overlay-title="Search..." { spawn "fuzzel-search"; }
 
-            # --- Applications --- #
-            "Mod+E".action.spawn = [ (lib.getExe pkgs.nautilus) ];
-            "Mod+O".action.spawn = [ (lib.getExe pkgs.obsidian) ];
-            "Mod+M".action.spawn = [ (lib.getExe pkgs.spotify) ];
+               // Applications
+               //Mod+B hotkey-overlay-title="Open Browser" { spawn "brave"; }
+               Mod+B hotkey-overlay-title="Open Browser" { spawn "zen-browser"; }
+               Mod+E { spawn-sh "nautilus -e"; }
+               Mod+O { spawn "obsidian"; }
+               Mod+M { spawn "spotify"; }
 
-            # --- Noctalia Keybinds ---
-            "Mod+Space".action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call launcher toggle";
-            "Mod+Shift+A".action.spawn-sh =
-              "${lib.getExe self'.packages.noctalia} ipc call controlCenter toggle";
-            "Mod+Shift+Comma".action.spawn-sh =
-              "${lib.getExe self'.packages.noctalia} ipc call settings toggle";
-            "Mod+Escape" = {
-              hotkey-overlay-title = "Power Menu";
-              action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call sessionMenu toggle";
-            };
+               // System
+               Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+               // Mod+ESCAPE hotkey-overlay-title="Power Menu" { spawn "fuzzel-powermenu"; }
 
-            # --- Media Keys --- #
-            "XF86AudioRaiseVolume" = {
-              allow-when-locked = true;
-              action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call volume increase";
-            };
-            "XF86AudioLowerVolume" = {
-              allow-when-locked = true;
-              action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call volume decrease";
-            };
+               //
+               // Noctalia Shell Only Section
+               //
+               Mod+Space { ${lib.getExe self'.packages.noctalia} ipc call launcher toggle"; }
+               Mod+Shift+A { ${lib.getExe self'.packages.noctalia} ipc call controlCenter toggle"; }
+               Mod+Shift+Comma { ${lib.getExe self'.packages.noctalia} ipc call settings toggle"; }
 
-            "XF86AudioMute" = {
-              allow-when-locked = true;
-              action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call volume muteOutput";
-            };
+               Mod+ESCAPE hotkey-overlay-title="Power Menu" {
+                spawn-sh "${lib.getExe self'.packages.noctalia} ipc call sessionMenu toggle";
+                }
 
-            "XF86MonBrightnessUp" = {
-              allow-when-locked = true;
-              action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call brightness increase";
-            };
+               // Audio & Brightness
+               XF86AudioPause allow-when-locked=true {
+                 spawn-sh "${lib.getExe self'.packages.noctalia} ipc call media playPause";
+               }
+               XF86AudioPlay allow-when-locked=true {
+                 spawn-sh "${lib.getExe self'.packages.noctalia} ipc call media playPause";
+               }
+               XF86AudioNext allow-when-locked=true {
+                spawn-sh "${lib.getExe self'.packages.noctalia} ipc call media next";
+               }
+               XF86AudioPrev allow-when-locked=true {
+                spawn-sh "${lib.getExe self'.packages.noctalia} ipc call media previous";
+               }
+               XF86AudioRaiseVolume {
+                 spawn-sh "${lib.getExe self'.packages.noctalia} ipc call volume increase";
+               }
+               XF86AudioLowerVolume {
+                 spawn-sh "${lib.getExe self'.packages.noctalia} ipc call volume decrease";
+               }
+               XF86AudioMute {
+                 spawn-sh "${lib.getExe self'.packages.noctalia} ipc call volume muteOutput";
+               }
+               XF86MonBrightnessUp {
+                 spawn-sh "${lib.getExe self'.packages.noctalia} ipc call brightness increase";
+               }
+               XF86MonBrightnessDown {
+                 spawn-sh "${lib.getExe self'.packages.noctalia} ipc call brightness decrease";
+               }
 
-            "XF86MonBrightnessDown" = {
-              allow-when-locked = true;
-              action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call brightness decrease";
-            };
+               // Overview
+               Mod+A repeat=false { toggle-overview; }
 
-            "XF86AudioNext" = {
-              allow-when-locked = true;
-              action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call media next";
-            };
+               // Window Management
+               Mod+W repeat=false { close-window; }
 
-            "XF86AudioPause" = {
-              allow-when-locked = true;
-              action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call media playPause";
-            };
+               Mod+Left  { focus-column-left; }
+               Mod+Down  { focus-window-down; }
+               Mod+Up    { focus-window-up; }
+               Mod+Right { focus-column-right; }
+               Mod+H     { focus-column-left; }
+               Mod+J     { focus-window-down; }
+               Mod+K     { focus-window-up; }
+               Mod+L     { focus-column-right; }
 
-            "XF86AudioPlay" = {
-              allow-when-locked = true;
-              action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call media playPause";
-            };
+               Mod+Ctrl+Left  { move-column-left; }
+               Mod+Ctrl+Down  { move-window-down; }
+               Mod+Ctrl+Up    { move-window-up; }
+               Mod+Ctrl+Right { move-column-right; }
+               Mod+Ctrl+H     { move-column-left; }
+               Mod+Ctrl+J     { move-window-down; }
+               Mod+Ctrl+K     { move-window-up; }
+               Mod+Ctrl+L     { move-column-right; }
 
-            "XF86AudioPrev" = {
-              allow-when-locked = true;
-              action.spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call media previous";
-            };
+               Mod+Home { focus-column-first; }
+               Mod+End  { focus-column-last; }
+               Mod+Ctrl+Home { move-column-to-first; }
+               Mod+Ctrl+End  { move-column-to-last; }
 
-            # --- Window Management ---
-            "Mod+W".action.close-window = null;
-            "Mod+A".action.toggle-overview = null;
+               Mod+Shift+Left  { focus-monitor-left; }
+               Mod+Shift+Down  { focus-monitor-down; }
+               Mod+Shift+Up    { focus-monitor-up; }
+               Mod+Shift+Right { focus-monitor-right; }
+               Mod+Shift+H     { focus-monitor-left; }
+               Mod+Shift+J     { focus-monitor-down; }
+               Mod+Shift+K     { focus-monitor-up; }
+               Mod+Shift+L     { focus-monitor-right; }
 
-            # --- Focus Windows --- #
-            "Mod+Left".action.focus-column-left = null;
-            "Mod+Right".action.focus-column-right = null;
-            "Mod+Up".action.focus-window-up = null;
-            "Mod+Down".action.focus-window-down = null;
-            "Mod+h".action.focus-column-left = null;
-            "Mod+l".action.focus-column-right = null;
-            "Mod+k".action.focus-window-up = null;
-            "Mod+j".action.focus-window-down = null;
-            "Mod+Home".action.focus-column.first = null;
-            "Mod+End".action.focus-column.first = null;
+               Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+               Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+               Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+               Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+               Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
+               Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
+               Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+               Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
-            # --- Move Windows --- #
-            "Mod+Ctrl+Left".action.move-column-left = null;
-            "Mod+Ctrl+Right".action.move-column-right = null;
-            "Mod+Ctrl+Up".action.move-window-up = null;
-            "Mod+Ctrl+Down".action.move-window-down = null;
-            "Mod+Ctrl+h".action.move-column-left = null;
-            "Mod+Ctrl+l".action.move-column-right = null;
-            "Mod+Ctrl+k".action.move-window-up = null;
-            "Mod+Ctrl+j".action.move-window-down = null;
-            "Mod+Ctrl+Home".action.move-column-to-first = null;
-            "Mod+Ctrl+End".action.move-column-to-last = null;
+               Mod+Page_Down      { focus-workspace-down; }
+               Mod+Page_Up        { focus-workspace-up; }
+               Mod+U              { focus-workspace-down; }
+               Mod+I              { focus-workspace-up; }
+               Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
+               Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
+               Mod+Ctrl+U         { move-column-to-workspace-down; }
+               Mod+Ctrl+I         { move-column-to-workspace-up; }
 
-            # --- Focus Monitor --- #
-            "Mod+Shift+Left".action.focus-monitor-left = null;
-            "Mod+Shift+Down".action.focus-monitor-down = null;
-            "Mod+Shift+Up".action.focus-monitor-up = null;
-            "Mod+Shift+Right".action.focus-monitor-right = null;
-            "Mod+Shift+H".action.focus-monitor-left = null;
-            "Mod+Shift+J".action.focus-monitor-down = null;
-            "Mod+Shift+K".action.focus-monitor-up = null;
-            "Mod+Shift+L".action.focus-monitor-right = null;
+               Mod+Shift+Page_Down { move-workspace-down; }
+               Mod+Shift+Page_Up   { move-workspace-up; }
+               Mod+Shift+U         { move-workspace-down; }
+               Mod+Shift+I         { move-workspace-up; }
 
-            # --- Move Column to Monitor --- #
-            "Mod+Shift+Ctrl+Left".action.move-column-to-monitor-left = null;
-            "Mod+Shift+Ctrl+Down".action.move-column-to-monitor-down = null;
-            "Mod+Shift+Ctrl+Up".action.move-column-to-monitor-up = null;
-            "Mod+Shift+Ctrl+Right".action.move-column-to-monitor-right = null;
-            "Mod+Shift+Ctrl+H".action.move-column-to-monitor-left = null;
-            "Mod+Shift+Ctrl+J".action.move-column-to-monitor-down = null;
-            "Mod+Shift+Ctrl+K".action.move-column-to-monitor-up = null;
-            "Mod+Shift+Ctrl+L".action.move-column-to-monitor-right = null;
+               Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+               Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+               Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+               Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
-            # --- Focus Workspace --- #
-            "Mod+Page_Down".action.focus-workspace-down = null;
-            "Mod+Page_Up".action.focus-workspace-up = null;
-            "Mod+U".action.focus-workspace-down = null;
-            "Mod+I".action.focus-workspace-up = null;
-            "Mod+1".action.focus-workspace = 1;
-            "Mod+2".action.focus-workspace = 2;
-            "Mod+3".action.focus-workspace = 3;
-            "Mod+4".action.focus-workspace = 4;
-            "Mod+5".action.focus-workspace = 5;
-            "Mod+6".action.focus-workspace = 6;
-            "Mod+7".action.focus-workspace = 7;
-            "Mod+8".action.focus-workspace = 8;
-            "Mod+9".action.focus-workspace = 9;
+               Mod+WheelScrollRight      { focus-column-right; }
+               Mod+WheelScrollLeft       { focus-column-left; }
+               Mod+Ctrl+WheelScrollRight { move-column-right; }
+               Mod+Ctrl+WheelScrollLeft  { move-column-left; }
 
-            # --- Move Column to Workspace --- #
-            "Mod+Ctrl+Page_Down".action.move-column-to-workspace-down = null;
-            "Mod+Ctrl+Page_Up".action.move-column-to-workspace-up = null;
-            "Mod+Ctrl+U".action.move-column-to-workspace-down = null;
-            "Mod+Ctrl+I".action.move-column-to-workspace-up = null;
-            "Mod+Ctrl+1".action.move-column-to-workspace = 1;
-            "Mod+Ctrl+2".action.move-column-to-workspace = 2;
-            "Mod+Ctrl+3".action.move-column-to-workspace = 3;
-            "Mod+Ctrl+4".action.move-column-to-workspace = 4;
-            "Mod+Ctrl+5".action.move-column-to-workspace = 5;
-            "Mod+Ctrl+6".action.move-column-to-workspace = 6;
-            "Mod+Ctrl+7".action.move-column-to-workspace = 7;
-            "Mod+Ctrl+8".action.move-column-to-workspace = 8;
-            "Mod+Ctrl+9".action.move-column-to-workspace = 9;
+               Mod+Shift+WheelScrollDown      { focus-column-right; }
+               Mod+Shift+WheelScrollUp        { focus-column-left; }
+               Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+               Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
-            # --- Move Workspace --- #
-            "Mod+Shift+Page_Down".action.move-workspace-down = null;
-            "Mod+Shift+Page_Up".action.move-workspace-up = null;
-            "Mod+Shift+U".action.move-workspace-down = null;
-            "Mod+Shift+I".action.move-workspace-up = null;
+               Mod+1 { focus-workspace 1; }
+               Mod+2 { focus-workspace 2; }
+               Mod+3 { focus-workspace 3; }
+               Mod+4 { focus-workspace 4; }
+               Mod+5 { focus-workspace 5; }
+               Mod+6 { focus-workspace 6; }
+               Mod+7 { focus-workspace 7; }
+               Mod+8 { focus-workspace 8; }
+               Mod+9 { focus-workspace 9; }
+               Mod+Ctrl+1 { move-column-to-workspace 1; }
+               Mod+Ctrl+2 { move-column-to-workspace 2; }
+               Mod+Ctrl+3 { move-column-to-workspace 3; }
+               Mod+Ctrl+4 { move-column-to-workspace 4; }
+               Mod+Ctrl+5 { move-column-to-workspace 5; }
+               Mod+Ctrl+6 { move-column-to-workspace 6; }
+               Mod+Ctrl+7 { move-column-to-workspace 7; }
+               Mod+Ctrl+8 { move-column-to-workspace 8; }
+               Mod+Ctrl+9 { move-column-to-workspace 9; }
 
-            # --- Mouse Control --- #
-            "Mod+WheelScrollLeft".action.focus-column-left = null;
-            "Mod+WheelScrollDown".action.focus-workspace-down = null;
-            "Mod+WheelScrollUp".action.focus-workspace-up = null;
-            "Mod+WheelScrollRight".action.focus-column-right = null;
+               Mod+BracketLeft  { consume-or-expel-window-left; }
+               Mod+BracketRight { consume-or-expel-window-right; }
 
-            "Mod+Ctrl+WheelScrollLeft".action.move-column-left = null;
-            "Mod+Ctrl+WheelScrollDown".action.move-column-to-workspace-down = null;
-            "Mod+Ctrl+WheelScrollUp".action.move-column-to-workspace-up = null;
-            "Mod+Ctrl+WheelScrollRight".action.move-column-right = null;
-
-            "Mod+Shift+WheelScrollUp".action.focus-column-left = null;
-            "Mod+Shift+WheelScrollRight".action.focus-column-right = null;
-            "Mod+Shift+Ctrl+WheelScrollDown".action.move-column-right = null;
-            "Mod+Shift+Ctrl+WheelScrollUp".action.move-column-left = null;
-
-            # --- Layouts --- #
-            "Mod+Q".action.toggle-column-tabbed-display = null;
-            "Mod+V".action.toggle-window-floating = null;
-            "Mod+Shift+V".action.switch-focus-between-floating-and-tiling = null;
-            "Mod+Minus".action.set-column-width = "-10%";
-            "Mod+Equal".action.set-column-width = "+10%";
-            "Mod+Shift+Minus".action.set-window-height = "-10%";
-            "Mod+Shift+Equal".action.set-window-height = "+10%";
-            "Mod+Ctrl+C".action.center-visible-columns = null;
-            "Mod+C".action.center-column = null;
-            "Mod+BracketLeft".action.consume-or-expel-window-left = null;
-            "Mod+BracketRight".action.consume-or-expel-window-right = null;
-            "Mod+Comma".action.consume-window-into-column = null;
-            "Mod+Period".action.expel-window-from-column = null;
-            "Mod+R".action.switch-preset-column-width = null;
-            "Mod+Shift+R".action.switch-preset-window-height = null;
-            "Mod+Ctrl+R".action.reset-window-height = null;
-            "Mod+F".action.maximize-column = null;
-            "Mod+Shift+F".action.fullscreen-window = null;
-            "Mod+Ctrl+F".action.expand-column-to-available-width = null;
-
-            # --- Screenshot --- #
-            "Print".action.screenshot = null;
-            "Mod+Shift+S".action.screenshot = null;
-            "Ctrl+Print".action.screenshot-screen = null;
-            "Alt+Print".action.screenshot-window = null;
-
-            # --- Niri Controls --- #
-            "Mod+Shift+E".action.quit = null;
-            "Ctrl+Alt+Delete".action.quit = { };
-            "Mod+Shift+P".action.power-off-monitors = null;
+               Mod+Comma  { consume-window-into-column; }
+               Mod+Period { expel-window-from-column; }
+               Mod+R { switch-preset-column-width; }
+               Mod+Shift+R { switch-preset-window-height; }
+               Mod+Ctrl+R { reset-window-height; }
+               Mod+F { maximize-column; }
+               Mod+Shift+F { fullscreen-window; }
+               Mod+Ctrl+F { expand-column-to-available-width; }
+               Mod+C { center-column; }
+               Mod+Ctrl+C { center-visible-columns; }
+               Mod+Minus { set-column-width "-10%"; }
+               Mod+Equal { set-column-width "+10%"; }
+               Mod+Shift+Minus { set-window-height "-10%"; }
+               Mod+Shift+Equal { set-window-height "+10%"; }
+               Mod+V       { toggle-window-floating; }
+               Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+               Mod+Q { toggle-column-tabbed-display; }
+               Print { screenshot; }
+               Super+Shift+S { screenshot; }
+               Ctrl+Print { screenshot-screen; }
+               Alt+Print { screenshot-window; }
+               Mod+Shift+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+               Mod+Shift+E { quit; }
+               Ctrl+Alt+Delete { quit; }
+               Mod+Shift+P { power-off-monitors; }
+            '';
           };
+
         };
       };
     };
