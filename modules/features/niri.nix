@@ -105,7 +105,7 @@
               };
             }
             {
-              geometry-corner-radius = "20";
+              geometry-corner-radius = 20;
               clip-to-geometry = true;
             }
             {
