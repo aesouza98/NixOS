@@ -97,11 +97,9 @@
               open-floating = true;
               open-focused = false;
               default-floating-position = {
-                props = {
-                  x = 16;
-                  y = 16;
-                  relative-to = "bottom-right";
-                };
+                x = 16;
+                y = 16;
+                relative-to = "bottom-right";
               };
             }
             {
