@@ -96,7 +96,7 @@
               matches = [ { title = "Picture.{0,1}in.{0,1}[Pp]icture"; } ];
               open-floating = true;
               open-focused = false;
-              default-floating-position = _: {
+              default-floating-position = {
                 props = {
                   x = 16;
                   y = 16;
