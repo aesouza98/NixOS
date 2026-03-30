@@ -8,6 +8,8 @@
         enable = true;
         useNautilus = true;
       };
-      environment.systemPackages = pkgs.noctalia-shell;
+      environment.systemPackages = [
+        pkgs.noctalia-shell
+      ];
     };
 }
