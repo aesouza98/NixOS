@@ -96,13 +96,12 @@
               matches = [ { title = "Picture.{0,1}in.{0,1}[Pp]icture"; } ];
               open-floating = true;
               open-focused = false;
-              default-floating-position = _: {
-                props = {
-                  x = 16;
-                  y = 16;
-                  relative-to = "bottom-right";
-                };
-              };
+              # Use a list of strings to represent multiple KDL arguments/properties
+              default-floating-position = [
+                "x=16"
+                "y=16"
+                "relative-to=\"bottom-right\""
+              ];
             }
             {
               geometry-corner-radius = 20;
