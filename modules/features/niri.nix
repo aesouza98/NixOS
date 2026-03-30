@@ -96,12 +96,12 @@
               matches = [ { title = "Picture.{0,1}in.{0,1}[Pp]icture"; } ];
               open-floating = true;
               open-focused = false;
-              default-floating-position.x = 16;
-              default-floating-position.y = 16;
+              default-floating-position.x = "16";
+              default-floating-position.y = "16";
               default-floating-positionrelative-to = "bottom-right";
             }
             {
-              geometry-corner-radius = 20;
+              geometry-corner-radius = "20";
               clip-to-geometry = true;
             }
             {
