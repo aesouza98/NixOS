@@ -97,11 +97,7 @@
               open-floating = true;
               open-focused = false;
               # Use a list of strings to represent multiple KDL arguments/properties
-              default-floating-position = [
-                "x=16"
-                "y=16"
-                "relative-to=\"bottom-right\""
-              ];
+              default-floating-position = "x=16 y=16 relative-to=\"bottom-right\"";
             }
             {
               geometry-corner-radius = 20;
