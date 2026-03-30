@@ -96,11 +96,15 @@
               matches = [ { title = "Picture.{0,1}in.{0,1}[Pp]icture"; } ];
               open-floating = true;
               open-focused = false;
-              default-floating-position = [
-                "x=16"
-                "y=16"
-                "relative-to=\"bottom-right\""
-              ];
+              # Use the 'raw' attribute if your module supports it,
+              # or simply write the properties as a single unquoted-looking block
+              default-floating-position = {
+                _args = [
+                  (builtins.unsafeDiscardStringContext "x=16")
+                  (builtins.unsafeDiscardStringContext "y=16")
+                  (builtins.unsafeDiscardStringContext "relative-to=\"bottom-right\"")
+                ];
+              };
             }
             {
               geometry-corner-radius = 20;
