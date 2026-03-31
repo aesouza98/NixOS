@@ -128,6 +128,7 @@
             wget
             yazi
             zoxide
+            zellij
           ];
         })
 
@@ -159,6 +160,15 @@
             zed-editor
             nixd
             helix
+            awk-language-server
+            beancount-language-server
+            vscode-css-languageserver
+            docker-compose-language-service
+            terraform-lsp
+            jq-lsp
+            ty
+            systemd-language-server
+            ansible-language-server
           ];
         })
 

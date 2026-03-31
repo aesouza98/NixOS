@@ -16,6 +16,7 @@
         # Modules
         self.nixosModules.gaming # Enable Gaming
         self.nixosModules.gc # Enable Garbage Collection
+        self.nixosModules.ldd # Enable LDD libraries
         self.nixosModules.nvidia # Install and configure Nvidia Drivers
         self.nixosModules.niri # Install and configure the Niri Window Manager (With Noctalia shell)
         self.nixosModules.sudo # Configure Sudo

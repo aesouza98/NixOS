@@ -24,6 +24,12 @@
           themes = "themes";
           waybar = "waybar";
           wofi = "wofi";
+          helix = "helix";
+          fcitx5 = "fcitx5";
+          noctalia = "noctalia";
+          tmux = "tmux";
+          yazi = "yazi";
+          zed = "zed";
         };
         dot-local = {
           bin = "bin";
@@ -38,9 +44,7 @@
             echo "Cloning dotfiles..."
             ${pkgs.git}/bin/git clone ${dotfilesRepo} "${dotfiles}"
 
-            # Optional: Automatically switch to SSH for future pushes
-            # since you mentioned you have your keys configured.
-            cd "${dotfiles}" && ${pkgs.git}/bin/git remote set-url origin git@github.com:yourusername/dotfiles.git
+            cd "${dotfiles}" && ${pkgs.git}/bin/git remote set-url origin git@github.com:aesouza98/dotfiles.git
           else
             echo "Dotfiles already exist at ${dotfiles}, skipping clone."
           fi
