@@ -82,6 +82,7 @@
             luarocks
             nodejs_22
             python313
+            python313Packages.pip
             ruby
             rustc
             yarn
