@@ -21,7 +21,7 @@
           core.editor = "hx";
           pull.rebase = true;
           push.autoSetupRemote = true;
-          safe.directory = "~/Documents";
+          safe.directory = "~/Documents/*";
         };
       };
     };
