@@ -18,9 +18,10 @@
             chb = "checkout -b";
             ch = "checkout";
           };
-          core.editor = "nvim";
+          core.editor = "hx";
           pull.rebase = true;
           push.autoSetupRemote = true;
+          safe.directory = "~/Documents";
         };
       };
     };

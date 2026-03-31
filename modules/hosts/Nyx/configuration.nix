@@ -14,6 +14,7 @@
         self.nixosModules.syncthing
 
         # Modules
+        self.nixosModules.beancount
         self.nixosModules.gaming # Enable Gaming
         self.nixosModules.gc # Enable Garbage Collection
         self.nixosModules.ldd # Enable LDD libraries
@@ -42,6 +43,7 @@
 
       i18n.extraLocaleSettings = {
         LC_ADDRESS = "pt_BR.UTF-8";
+        LC_CTYPE = "pt_BR.UTF-8";
         LC_IDENTIFICATION = "pt_BR.UTF-8";
         LC_MEASUREMENT = "pt_BR.UTF-8";
         LC_MONETARY = "pt_BR.UTF-8";
