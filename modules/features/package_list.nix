@@ -30,6 +30,7 @@
             alacritty
             cliphist
             grim
+            fcitx5
             fuzzel
             hyprlock
             hyprshot
