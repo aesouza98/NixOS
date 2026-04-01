@@ -83,6 +83,8 @@
             nodejs_22
             python313
             python313Packages.pip
+            python313Packages.spotipy
+            python313Packages.yt-dlp
             ruby
             rustc
             yarn
