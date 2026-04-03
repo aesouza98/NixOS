@@ -172,6 +172,7 @@
             ty
             systemd-language-server
             ansible-language-server
+            tombi
           ];
         })
 
