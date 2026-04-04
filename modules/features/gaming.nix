@@ -18,6 +18,7 @@
         discord
         hydralauncher
         protonup-ng
+        protonplus
         wine
         wine64
         winetricks

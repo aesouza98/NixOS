@@ -32,6 +32,7 @@
             grim
             fcitx5
             fuzzel
+            gpu-screen-recorder
             hyprlock
             hyprshot
             libnotify
@@ -112,7 +113,6 @@
             eza
             fastfetch
             fd
-            fish
             fzf
             ghostty
             gum
@@ -121,7 +121,7 @@
             libvirt
             nh
             parted
-            qemu
+            pure-prompt
             ripgrep
             starship
             stow
