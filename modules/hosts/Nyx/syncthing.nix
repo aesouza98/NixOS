@@ -30,6 +30,22 @@
                 "Macbook"
               ];
             };
+            "Books" = {
+              id = "x5arn-xu5c6";
+              path = "~/Documents/Books";
+              devices = [
+                "iPhone"
+                "Macbook"
+              ];
+            };
+            "Documents" = {
+              id = "wp57w-ujwmo";
+              path = "~/Documents/Documentos";
+              devices = [
+                "iPhone"
+                "Macbook"
+              ];
+            };
           };
         };
       };

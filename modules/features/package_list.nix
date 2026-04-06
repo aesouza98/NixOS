@@ -121,6 +121,7 @@
             libvirt
             nh
             parted
+            pfetch
             pure-prompt
             ripgrep
             starship
@@ -181,6 +182,7 @@
             bitwarden-desktop
             brave
             firefox
+            foliate
             gearlever
             gnome-calculator
             localsend
