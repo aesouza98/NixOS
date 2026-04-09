@@ -40,7 +40,7 @@
             playerctl
             swaybg
             swayosd
-            waybar
+            # waybar
             wiremix
             wl-clip-persist
             wl-clipboard

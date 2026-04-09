@@ -14,7 +14,7 @@
         modesetting.enable = true;
         powerManagement.enable = true;
         powerManagement.finegrained = false; # set to true for laptops
-        open = true;
+        open = true; # false para ollama caso fique lento
         nvidiaSettings = true;
       };
       environment.sessionVariables = {
