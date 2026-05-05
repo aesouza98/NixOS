@@ -20,7 +20,7 @@
         self.nixosModules.ldd # Enable LDD libraries
         self.nixosModules.nvidia # Install and configure Nvidia Drivers
         self.nixosModules.niri # Install and configure the Niri Window Manager (With Noctalia shell)
-        self.nixosModules.ollama
+        #self.nixosModules.ollama
         self.nixosModules.sudo # Configure Sudo
       ];
 
