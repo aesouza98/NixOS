@@ -79,7 +79,7 @@ environment.systemPackages = with pkgs; [
   # Hardware/System Utilities (Optional)
   kdePackages.isoimagewriter # Write hybrid ISOs to USB
   kdePackages.partitionmanager # Disk and partition management
-};
+  ];
 
       #services.xserver.displayManager.gdm.enable = true;
       #services.xserver.desktopManager.gnome.enable = true;
