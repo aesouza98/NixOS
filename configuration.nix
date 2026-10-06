@@ -25,6 +25,29 @@
     }];
   };
 
+  # envs
+  environment.sessionVariables = rec {
+    NH_FLAKE = "$HOME/.nix/";
+  };
+
+  # automount
+  fileSystems."/mnt/ssd" = {
+    device = "/dev/disk/by-uuid/1c21689f-e9d6-4d07-9fc0-bdc5a3a01eeb";
+    fsType = "ext4";
+    options = [ "defaults" "nofail" ];
+  };
+  fileSystems."/mnt/hdd" = {
+    device = "/dev/disk/by-uuid/fc74f4f4-9fb3-4d18-b8a1-5732f92a2a9d";
+    fsType = "ext4";
+    options = [ "defaults" "nofail" ];
+  };
+
+  # symlinks
+  systemd.tmpfiles.rules = [
+    "L+ /home/nano/Documents - - - - /mnt/ssd/Files"
+    "L+ /home/nano/Pictures - - - - /mnt/ssd/Imagens"
+  ];
+
   # networking
   networking.networkmanager.enable = true;
 
@@ -106,11 +129,13 @@
     # general
     bitwarden-desktop
     brave-origin
+    ghostty
     kdePackages.kate
     localsend
     obsidian
     solaar
     spotify
+    zed-editor
 
     # gaming
     lutris
@@ -139,6 +164,10 @@
     vim
     wget
     zoxide
+
+    # lsp
+    nil
+    nixd
   ];
 
   # firefox.
