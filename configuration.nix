@@ -6,12 +6,14 @@
       ./hardware-configuration.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
+  # bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nyx"; # Define your hostname.
+  # hostname
+  networking.hostName = "nyx";
 
+  # sudo
   security.sudo = {
     enable = true;
     extraRules = [{
@@ -23,19 +25,14 @@
     }];
   };
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
+  # networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  # timezone
   time.timeZone = "America/Sao_Paulo";
 
-  # Select internationalisation properties.
+  # locales
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "pt_BR.UTF-8";
     LC_IDENTIFICATION = "pt_BR.UTF-8";
@@ -54,8 +51,7 @@
     powerOnBoot = true;
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
+  # x11
   services.xserver.enable = true;
 
   # nvidia
@@ -67,18 +63,18 @@
     modesetting.enable = true;
   };
 
-  # Enable the KDE Plasma Desktop Environment.
+  # kde plasma
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  # Configure keymap in X11
+  # keyboard
   services.xserver.xkb = {
     layout = "us";
     variant = "mac";
     options = "lv3:menu_switch";
   };
 
-  # Enable CUPS to print documents.
+  # CUPS
   services.printing.enable = false;
 
   # pipewire
@@ -96,32 +92,6 @@
     isNormalUser = true;
     description = "Adriano Elias";
     extraGroups = [ "networkmanager" "wheel" "gamemode" ];
-  };
-
-  # programs
-
-  # firefox.
-  programs.firefox.enable = true;
-
-  # steam
-  programs.steam = {
-    enable = true;
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
-  };
-
-  # nix-ld
-  programs.nix-ld.enable = true;
-
-  # fix steam cursor
-  systemd.tmpfiles.rules = [
-    "L+ /home/nano/.local/share/icons/breeze_cursors - - - - ${pkgs.kdePackages.breeze}/share/icons/breeze_cursors"
-  ];
-
-  # gaming
-  programs.gamemode.enable = true;
-  programs.gamescope = {
-    enable = true;
-    capSysNice = true;
   };
 
   # firmware updates
@@ -154,6 +124,8 @@
     bat
     bitwarden-cli
     claude-code
+    deja
+    delta
     eza
     fd
     fuzzel
@@ -161,6 +133,7 @@
     git
     gh
     helix
+    nh
     pfetch
     stow
     vim
@@ -168,7 +141,24 @@
     zoxide
   ];
 
-  # programs
+  # firefox.
+  programs.firefox.enable = true;
+
+  # steam
+  programs.steam = {
+    enable = true;
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
+  };
+
+  # nix-ld
+  programs.nix-ld.enable = true;
+
+  # gaming
+  programs.gamemode.enable = true;
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
 
   # zsh
   programs.zsh = {
