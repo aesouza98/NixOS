@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ./hardware-configuration.nix # hardware
-    ./packages.nix # packages
+    ./hardware-configuration.nix
+    ./packages.nix
   ];
 
   # bootloader
