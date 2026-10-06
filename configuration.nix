@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix # hardware
+    ./packages.nix # packages
+  ];
 
   # bootloader
   boot.loader.systemd-boot.enable = true;
@@ -16,17 +16,21 @@
   # sudo
   security.sudo = {
     enable = true;
-    extraRules = [{
-      users = [ "nano" ];
-      commands = [{
-        command = "ALL";
-        options = [ "NOPASSWD" ];
-      }];
-    }];
+    extraRules = [
+      {
+        users = [ "nano" ];
+        commands = [
+          {
+            command = "ALL";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
   };
 
   # envs
-  environment.sessionVariables = rec {
+  environment.sessionVariables = {
     NH_FLAKE = "$HOME/.nix/";
   };
 
@@ -34,12 +38,18 @@
   fileSystems."/mnt/ssd" = {
     device = "/dev/disk/by-uuid/1c21689f-e9d6-4d07-9fc0-bdc5a3a01eeb";
     fsType = "ext4";
-    options = [ "defaults" "nofail" ];
+    options = [
+      "defaults"
+      "nofail"
+    ];
   };
   fileSystems."/mnt/hdd" = {
     device = "/dev/disk/by-uuid/fc74f4f4-9fb3-4d18-b8a1-5732f92a2a9d";
     fsType = "ext4";
-    options = [ "defaults" "nofail" ];
+    options = [
+      "defaults"
+      "nofail"
+    ];
   };
 
   # symlinks
@@ -114,80 +124,15 @@
   users.users."nano" = {
     isNormalUser = true;
     description = "Adriano Elias";
-    extraGroups = [ "networkmanager" "wheel" "gamemode" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "gamemode"
+    ];
   };
 
   # firmware updates
   hardware.enableRedistributableFirmware = true;
-
-  # unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # packages
-  environment.systemPackages = with pkgs; [
-
-    # general
-    bitwarden-desktop
-    brave-origin
-    ghostty
-    kdePackages.kate
-    localsend
-    obsidian
-    solaar
-    spotify
-    zed-editor
-
-    # gaming
-    lutris
-    mangohud
-    protonplus
-    protontricks
-    winetricks
-    wineWow64Packages.stagingFull
-
-    # cli
-    bat
-    bitwarden-cli
-    claude-code
-    deja
-    delta
-    eza
-    fd
-    fuzzel
-    fzf
-    git
-    gh
-    helix
-    nh
-    pfetch
-    stow
-    vim
-    wget
-    zoxide
-
-    # lsp
-    nil
-    nixd
-  ];
-
-  # firefox.
-  programs.firefox.enable = true;
-
-  # steam
-  programs.steam = {
-    enable = true;
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
-  };
-
-  # nix-ld
-  programs.nix-ld.enable = true;
-
-  # gaming
-  programs.gamemode.enable = true;
-  programs.gamescope = {
-    enable = true;
-    capSysNice = true;
-  };
 
   # zsh
   programs.zsh = {
@@ -213,7 +158,10 @@
   networking.firewall.enable = false;
 
   # flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # version
   system.stateVersion = "26.05";
