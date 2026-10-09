@@ -40,6 +40,7 @@
     helix
     nh
     pfetch
+    ripgrep
     stow
     vim
     wget
