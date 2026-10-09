@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -60,6 +60,34 @@
 
   # networking
   networking.networkmanager.enable = true;
+
+  # hosts - toggle: hosts-toggle
+  environment.etc.hosts.mode = "0644";
+  system.activationScripts.hostsBlocklist = {
+    deps = [ "etc" ];
+    text = ''
+      if [ -f /etc/hosts-blocklist ]; then
+        cat /etc/hosts-blocklist >> /etc/hosts
+      fi
+    '';
+  };
+  specialisation.hosts-unfiltered.configuration = {
+    system.activationScripts.hostsBlocklist = lib.mkForce "";
+  };
+  environment.systemPackages = [
+    (pkgs.writeShellScriptBin "hosts-toggle" ''
+      set -euo pipefail
+      base=/nix/var/nix/profiles/system
+      unfiltered="$base/specialisation/hosts-unfiltered"
+      if [ "$(readlink -f /run/current-system)" = "$(readlink -f "$unfiltered")" ]; then
+        sudo "$base/bin/switch-to-configuration" switch
+        echo "hosts: filtered"
+      else
+        sudo "$unfiltered/bin/switch-to-configuration" switch
+        echo "hosts: unfiltered"
+      fi
+    '')
+  ];
 
   # timezone
   time.timeZone = "America/Sao_Paulo";
