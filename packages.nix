@@ -18,6 +18,7 @@
     zed-editor
 
     # gaming
+    discord
     lutris
     mangohud
     protonplus
