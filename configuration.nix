@@ -142,6 +142,12 @@
     enableLsColors = true;
   };
 
+  # appimage
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
   # mtr
   programs.mtr.enable = true;
 

@@ -9,16 +9,19 @@
     # general
     bitwarden-desktop
     brave-origin
+    gearlever
     ghostty
     kdePackages.kate
     localsend
     obsidian
+    qbittorrent
     solaar
     spotify
     zed-editor
 
     # gaming
     discord
+    faugus-launcher
     lutris
     mangohud
     protonplus
