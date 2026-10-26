@@ -20,6 +20,7 @@
     zed-editor
 
     # gaming
+    bottles
     discord
     faugus-launcher
     lutris
