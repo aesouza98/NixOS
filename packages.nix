@@ -9,7 +9,6 @@
     # general
     bitwarden-desktop
     brave-origin
-    gearlever
     ghostty
     kdePackages.kate
     localsend
@@ -56,6 +55,15 @@
     nixd
   ];
 
+  # appimage
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+    package = pkgs.appimage-run.override {
+      extraPkgs = pkgs: [ pkgs.mpv-unwrapped ];
+    };
+  };
+
   # firefox.
   programs.firefox.enable = true;
 
@@ -74,4 +82,11 @@
     enable = true;
     capSysNice = true;
   };
+
+  # flatpak
+  services.flatpak.enable = true;
+  services.flatpak.packages = [
+    "it.mijorus.gearlever"
+  ];
+  
 }
