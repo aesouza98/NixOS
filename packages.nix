@@ -38,6 +38,7 @@
     delta
     eza
     fd
+    ffmpeg-full
     fuzzel
     fzf
     git
