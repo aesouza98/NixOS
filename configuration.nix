@@ -32,6 +32,7 @@
   # envs
   environment.sessionVariables = {
     NH_FLAKE = "$HOME/.nix/";
+    GTK_IM_MODULE = "gtk-im-context-simple";
   };
 
   # automount
