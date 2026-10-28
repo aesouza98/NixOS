@@ -49,6 +49,7 @@
     stow
     vim
     wget
+    yt-dlp
     zoxide
 
     # lsp
