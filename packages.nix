@@ -47,6 +47,7 @@
     nh
     pfetch
     ripgrep
+    spotiflac
     stow
     vim
     wget
