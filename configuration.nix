@@ -4,6 +4,8 @@
   imports = [
     ./hardware-configuration.nix
     ./packages.nix
+    ./niri.nix
+    ./shell.nix
   ];
 
   # bootloader

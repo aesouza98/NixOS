@@ -8,11 +8,11 @@
 
     # general
     bitwarden-desktop
-    brave-origin
+    (brave-origin.override { commandLineArgs = "--password-store=kwallet6"; })
     ghostty
     kdePackages.kate
     localsend
-    obsidian
+    (obsidian.override { commandLineArgs = "--password-store=kwallet6"; })
     qbittorrent
     solaar
     spotify
@@ -20,7 +20,7 @@
 
     # gaming
     bottles
-    discord
+    (discord.override { commandLineArgs = "--password-store=kwallet6"; })
     faugus-launcher
     lutris
     mangohud
@@ -44,6 +44,7 @@
     git
     gh
     helix
+    jq
     nh
     pfetch
     ripgrep
@@ -92,5 +93,4 @@
   services.flatpak.packages = [
     "it.mijorus.gearlever"
   ];
-  
 }
