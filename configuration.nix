@@ -63,6 +63,7 @@
 
   # networking
   networking.networkmanager.enable = true;
+  networking.interfaces.enp3s0.wakeOnLan.enable = true;
 
   # timezone
   time.timeZone = "America/Sao_Paulo";
@@ -127,6 +128,7 @@
   users.users."nano" = {
     isNormalUser = true;
     description = "Adriano Elias";
+    shell = pkgs.zsh;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -156,6 +158,24 @@
 
   # ssh
   services.openssh.enable = true;
+
+  # remote desktop
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
+
+  # mdns
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      userServices = true;
+    };
+  };
 
   # firewall
   networking.firewall.enable = false;

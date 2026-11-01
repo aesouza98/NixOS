@@ -44,6 +44,7 @@
     git
     gh
     helix
+    herdr
     jq
     nh
     pfetch
