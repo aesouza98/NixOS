@@ -165,6 +165,10 @@
     autoStart = true;
     capSysAdmin = true;
     openFirewall = true;
+    settings = {
+      capture = "kms";
+      csrf_allowed_origins = "https://nyx.local:47990,https://192.168.100.9:47990";
+    };
   };
 
   # mdns
