@@ -82,6 +82,9 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
+  # monitor
+  hardware.i2c.enable = true;
+
   # bluetooth
   hardware.bluetooth = {
     enable = true;
@@ -133,6 +136,7 @@
       "networkmanager"
       "wheel"
       "gamemode"
+      "i2c"
     ];
   };
 
