@@ -34,6 +34,7 @@
     bat
     bitwarden-cli
     claude-code
+    ddcutil
     deja
     delta
     eza
@@ -53,6 +54,7 @@
     stow
     vim
     wget
+    wlsunset
     yt-dlp
     zoxide
 
