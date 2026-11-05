@@ -89,9 +89,8 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+    settings.General.AlwaysPairable = true;
   };
-  services.blueman.enable = true;
-
 
   # x11
   services.xserver.enable = true;
