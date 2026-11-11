@@ -25,7 +25,7 @@
     mangohud
     protonplus
     protontricks
-    umu-launcher-unwrapped
+    umu-launcher
     winetricks
     wineWow64Packages.stagingFull
 

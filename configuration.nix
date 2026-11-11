@@ -186,6 +186,16 @@
     };
   };
 
+  # podman
+  virtualisation.podman = {
+    enable = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    podman-compose
+  ];
+
   # firewall
   networking.firewall.enable = false;
 
