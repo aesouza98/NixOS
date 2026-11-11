@@ -14,7 +14,6 @@
     localsend
     (obsidian.override { commandLineArgs = "--password-store=kwallet6"; })
     qbittorrent
-    solaar
     spotify
     zed-editor
 
@@ -74,6 +73,11 @@
 
   # firefox.
   programs.firefox.enable = true;
+
+  programs.solaar = {
+    enable = true;
+    userService.enable = true;
+  };
 
   # steam
   programs.steam = {
