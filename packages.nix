@@ -48,6 +48,7 @@
     jq
     nh
     pfetch
+    podman-compose
     ripgrep
     spotiflac
     stow
@@ -74,6 +75,7 @@
   # firefox.
   programs.firefox.enable = true;
 
+  # solaar
   programs.solaar = {
     enable = true;
     userService.enable = true;
